@@ -1,16 +1,11 @@
-class User < ActiveRecord::Base
+class User
+  include Mongoid::Document
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :lockable, :timeoutable, :confirmable and :activatable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  field :name
+  field :role
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation
+  ROLES = %w[admin user]
 end

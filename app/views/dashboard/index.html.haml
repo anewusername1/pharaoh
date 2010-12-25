@@ -1,0 +1,16 @@
+- title "User Dashboard"
+
+- if can? :manage, @users
+  %p
+    Hello, you are an Admin
+  %h2
+    Users
+  - for user in @users
+    %p
+      = user.name
+      = user.email
+      = link_to "Edit User", edit_user_path(user)
+      = link_to "Delete User", user, :confirm => "Are you sure?", :method => :delete
+- else
+  %p
+    Hello, you are not an Admin
