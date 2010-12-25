@@ -31,3 +31,4 @@ gem 'rails', '3.0.3'
 # end
 gem 'devise'
 gem 'mysql'
+gem 'haml'
