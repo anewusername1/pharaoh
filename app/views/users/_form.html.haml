@@ -23,7 +23,7 @@
 - if can? :manage, @users
 %p
   = f.label :role
-  :
+  \:
   = f.collection_select :role, User::ROLES, :to_s, :humanize, {:include_blank => true}
 
 %p
