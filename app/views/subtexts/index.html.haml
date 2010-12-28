@@ -1,0 +1,10 @@
+%table
+  - @subtexts.all.each do |subt| 
+    %tr
+      %td
+        subt.subtext
+        
+= form_for("subtexts", :as => "subtexts", :url => new_subtext_url) do |f| 
+  = f.label :subtext
+  %br
+  = f.text_field 'subtext'

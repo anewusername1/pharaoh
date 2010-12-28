@@ -7,4 +7,9 @@ class SubtextsController < ApplicationController
   def create
     Subtext.create(params[:subtext])
   end
+  
+  def index
+    @subtexts = Subtext.all
+    redirect_to user_index_path unless(can? :manage, @subtexts)
+  end
 end

@@ -6,6 +6,7 @@ Iblankwhen::Application.routes.draw do
   end
   resources :token_authentications, :only => [:create, :destroy]
   resources :user, :controller => "users"
+  resources :subtexts
   root :to => "dashboard#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

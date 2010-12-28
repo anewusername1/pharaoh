@@ -1,6 +1,6 @@
 %h2
   Edit
-    = resource_name.to_s.humanize
+  = resource_name.to_s.humanize
 
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| 
   = devise_error_messages! 
@@ -17,7 +17,8 @@
 
   %p
     = f.label :password 
-    %i(leave blank if you don't want to change it)
+    %i
+      (leave blank if you don't want to change it)
     %br
     = f.password_field :password
 
@@ -51,7 +52,7 @@
   - if can? :manage, @users
   %p
     = f.label :role
-    :
+    \:
     = f.collection_select :role, User::ROLES, :to_s, :humanize, {:include_blank => true}
   %p
     = f.submit "Update"
@@ -62,6 +63,6 @@
 %p
   Unhappy?
   = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
-  .
+  \.
 
 = link_to "Back", :back
