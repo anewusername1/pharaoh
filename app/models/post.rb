@@ -3,4 +3,5 @@ class Post
   
   field :subtext
   field :text
+  has_many :comments
 end
