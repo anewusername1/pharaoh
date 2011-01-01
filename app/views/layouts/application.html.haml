@@ -18,6 +18,7 @@
               - if can? :manage, @users 
                 = link_to "Add User", new_user_path
                 = link_to "Subtexts", subtexts_path
+                = link_to "Approve Posts", '/posts/manage' if(Post.find(:all, :conditions => {:approved => nil}).count > 0)
             = link_to "My Account", edit_user_registration_path 
             = link_to "Sign out", destroy_user_session_path
           - else

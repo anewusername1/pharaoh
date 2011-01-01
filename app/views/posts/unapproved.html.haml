@@ -1,0 +1,8 @@
+#post_manage_container
+  - @posts.each do |p| 
+    .post
+      = p.subtext
+      = p.text
+      %br
+      = link_to("Approve", "/posts/manage/#{p._id}/approve")
+      = link_to("Deny", "/posts/manage/#{p._id}/deny")

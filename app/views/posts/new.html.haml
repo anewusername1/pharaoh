@@ -1,0 +1,12 @@
+#new_post_container
+  - form_for('post', @post, :method => "POST", :url => posts_url) do |f| 
+    .label
+      = f.label 'subtext'
+    .field
+      = f.select('subtext', @subtexts)
+    .label
+      = f.label 'text'
+    .field
+      = f.text_area(:text, :cols => 50, :rows => 5)
+    .field
+      = f.submit 'Post'

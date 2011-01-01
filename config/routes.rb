@@ -7,7 +7,10 @@ Iblankwhen::Application.routes.draw do
   resources :token_authentications, :only => [:create, :destroy]
   resources :user, :controller => "users"
   resources :subtexts
-  root :to => "dashboard#index"
+  match '/posts/manage', :controller => 'posts', :action => 'unapproved'
+  match '/posts/manage/:id/:paction', :controller => 'posts', :action => 'manage'
+  resources :posts
+  root :to => "posts#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

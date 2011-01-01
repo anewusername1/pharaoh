@@ -1,10 +1,15 @@
+%br
 %table
   - @subtexts.all.each do |subt| 
     %tr
       %td
-        subt.subtext
+        = subt.subtext
+      %td
+        = link_to('delete', "/subtexts/#{subt._id}", :method => "DELETE", :confirm => "Sure?") 
         
-= form_for("subtexts", :as => "subtexts", :url => new_subtext_url) do |f| 
+- form_for('subtext', @subtext, :url => subtexts_url, :method => "POST") do |f| 
   = f.label :subtext
   %br
   = f.text_field 'subtext'
+  %br
+  = f.submit 'Create Subtext'
