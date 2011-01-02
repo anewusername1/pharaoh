@@ -1,3 +1,5 @@
+= javascript_include_tag '/javascripts/controllers/posts.new.js'
+= error_messages_for @post
 #new_post_container
   - form_for('post', @post, :method => "POST", :url => posts_url) do |f| 
     .label
@@ -8,5 +10,14 @@
       = f.label 'text'
     .field
       = f.text_area(:text, :cols => 50, :rows => 5)
+      %br
+      characters left: <input type='text' readonly name='limit_count' id='limit_count' size='2' />
+    - unless(user_signed_in?)
+      .label
+        = f.label "email", "Email (optional)"
+      .field
+        = f.text_field "email"
+    - else
+      = f.hidden_field "email", :value => current_user.email
     .field
       = f.submit 'Post'

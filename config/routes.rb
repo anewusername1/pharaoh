@@ -4,6 +4,7 @@ Iblankwhen::Application.routes.draw do
     get '/login' => 'devise/sessions#new'
     get '/logout' => 'devise/sessions#destroy'
   end
+  match '/myposts', :controller => "users", :action => "showposts"
   resources :token_authentications, :only => [:create, :destroy]
   resources :user, :controller => "users"
   resources :subtexts

@@ -1,8 +1,13 @@
 #post_manage_container
-  - @posts.each do |p| 
+  - @unapproved_posts.each do |up| 
     .post
-      = p.subtext
-      = p.text
+      = up.subtext
+      = up.text
       %br
-      = link_to("Approve", "/posts/manage/#{p._id}/approve")
-      = link_to("Deny", "/posts/manage/#{p._id}/deny")
+      = link_to("Approve", "/posts/manage/#{up._id}/approve")
+      = link_to("Deny", "/posts/manage/#{up._id}/deny")
+  - @approved_posts.each do |ap| 
+    .post
+      = ap.subtext
+      = ap.text
+      = link_to("Delete", "/posts/#{ap._id}", :method => "DELETE")

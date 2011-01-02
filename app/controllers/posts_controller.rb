@@ -1,14 +1,25 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.find(:all, :conditions => {:approved => true, :visible => true})
+    @posts = Post.find(:all, :conditions => {:approved => true, :visible => true}).order_by(:created_at.desc)
   end
   
   def show
     @posts = Post.find(:id => params[:id])
   end
   
+  def destroy
+    if(can?(:manage, :posts))
+      post = Post.criteria.id(params[:id]).first
+      post.delete
+      redirect_to '/posts/manage'
+    else
+      redirect_to root_path
+    end
+  end
+  
   def unapproved
-    @posts = Post.find(:all, :conditions => {:approved => nil})
+    @unapproved_posts = Post.find(:all, :conditions => {:approved => nil})
+    @approved_posts = Post.find(:all, :conditions => {:approved => true})
     if(current_user)
       redirect_to user(current_user) unless(can?(:manage, @posts))
     else
@@ -41,7 +52,13 @@ class PostsController < ApplicationController
   def create
     data = params[:post]
     data[:subtext] = Subtext.criteria.id(params[:post][:subtext]).first.subtext
-    Post.create(data)
-    redirect_to posts_path
+    @post = Post.new(data)
+    if(@post.save)
+      flash[:info] = "Your post has been created! Please allow some time for it to be approved."
+      redirect_to posts_path
+    else
+      @subtexts = Subtext.all.collect {|s| [s.subtext, s._id]}
+      render :action => "new"
+    end
   end
 end

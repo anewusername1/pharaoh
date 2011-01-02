@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
   
+  def showposts
+    @posts = Post.find(:all, :conditions => {:email => current_user.email})
+  end
+  
   def create
     @user = User.new(params[:user])
     if @user.save
