@@ -1,3 +1,4 @@
+= javascript_include_tag '/javascripts/controllers/posts.unapproved.js'
 #post_manage_container
   - @unapproved_posts.each do |up| 
     .post
@@ -5,7 +6,9 @@
       = up.text
       %br
       = link_to("Approve", "/posts/manage/#{up._id}/approve")
-      = link_to("Deny", "/posts/manage/#{up._id}/deny")
+      = link_to("Deny", "#", :id => "toggleDeny")
+      .deny_message
+        denied
   - @approved_posts.each do |ap| 
     .post
       = ap.subtext
