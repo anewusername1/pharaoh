@@ -7,7 +7,7 @@
       %br
       = link_to("Approve", "/posts/manage/#{up._id}/approve")
       = link_to("Deny", "#", :id => "toggleDeny")
-      .deny_message
+      #deny_message
         denied
   - @approved_posts.each do |ap| 
     .post

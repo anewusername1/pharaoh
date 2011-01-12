@@ -38,3 +38,9 @@ gem 'mongoid', '2.0.0.beta.20'
 gem 'devise', '1.1.5'
 gem 'cancan', '1.4.1'
 gem 'haml'
+
+group :test do
+  gem 'rspec'
+  gem 'factory_girl'
+  gem 'mocha'
+end
