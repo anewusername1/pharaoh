@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+# require 'rspec/rails'
 
 # class ActiveSupport::TestCase
 #   include Devise::TestHelpers
@@ -14,6 +15,7 @@ require 'rails/test_help'
 #   # Add more helper methods to be used by all tests here...
 # end
 
+include RSpec::Expectations
 RSpec.configure do |config|
-  config.mock_with :mocha
+  # config.mock_with :mocha
 end

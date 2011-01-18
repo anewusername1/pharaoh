@@ -51,7 +51,15 @@ class PostsController < ApplicationController
   
   def create
     data = params[:post]
-    data[:subtext] = Subtext.criteria.id(params[:post][:subtext]).first.subtext
+    begin
+      data[:subtext] = Subtext.criteria.id(params[:post][:subtext]).first.subtext
+    rescue NoMethodError => e
+      puts "#{e.class}: #{e.message}"
+      # most likely, the subtext doesn't exist
+      flash[:info] = "Please try again"
+      redirect_to :back
+    end
+    
     @post = Post.new(data)
     if(@post.save)
       flash[:info] = "Your post has been created! Please allow some time for it to be approved."
