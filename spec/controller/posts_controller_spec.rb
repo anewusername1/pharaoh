@@ -52,5 +52,13 @@ describe PostsController do
     end
   end
   
-  # descrie
+  describe "GET unapproved" do
+  end
+  
+  describe "DELETE destroy" do
+  end
+  
+  describe "GET manage" do
+    
+  end
 end

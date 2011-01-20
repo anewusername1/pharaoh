@@ -9,9 +9,9 @@ require 'database_cleaner'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
-  DatabaseCleaner[:mongoid].strategy = :truncation
-  DatabaseCleaner[:mongoid].start
-  DatabaseCleaner[:mongoid].clean
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.start
+  DatabaseCleaner.clean
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
