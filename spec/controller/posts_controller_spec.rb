@@ -7,11 +7,6 @@ describe PostsController do
   # render_views
   before(:each) do
     DatabaseCleaner.clean
-    # PostsController.stubs(:new).returns(@post_controller = mock(:post, :save => true))
-  end
-  
-  def do_create
-    # post :create, :menu_item => {:name => 'value'}
   end
   
   describe "GET index" do
@@ -46,19 +41,52 @@ describe PostsController do
       Subtext.expects(:criteria).returns(submock)
     end
     
-    it "should create a new post" do
-      post :create, {:post => {:subtext => 1234, :text => "that happens"}}
-      Post.count.should == 1
+    describe "valid posts" do
+      it "should create a new post" do
+        post :create, {:post => {:subtext => 1234, :text => "that happens"}}
+        Post.count.should == 1
+      end
+    end    
+    
+    describe "invalid posts" do
+      before(:each) do
+        post :create, {:post => {:subtext => 1235, :text => "haha"}}
+      end
+      
+      it "should not create an invalid post" do
+        Post.count.should == 0
+      end
+      
+      it "should redirect back" do
+        response.should be_redirect
+      end
     end
+    
   end
   
   describe "GET unapproved" do
+    it "should show me unapproved posts if I am admin"
+    it "should redirect me if I'm not admin"
   end
   
   describe "DELETE destroy" do
+    describe "as admin" do
+      it "should delete a post"
+    end
+    
+    describe "not admin" do
+      it "should redirect"
+      it "should not delete the post if"
+    end
   end
   
   describe "GET manage" do
+    describe "as admin" do
+      it "should allow me to view the manage page if I'm admin"
+    end
     
+    describe "not admin" do
+      it "should redirect me"
+    end
   end
 end

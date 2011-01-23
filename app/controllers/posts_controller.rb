@@ -57,7 +57,7 @@ class PostsController < ApplicationController
       puts "#{e.class}: #{e.message}"
       # most likely, the subtext doesn't exist
       flash[:info] = "Please try again"
-      redirect_to :back
+      redirect_to new_post_path and return
     end
     
     @post = Post.new(data)
