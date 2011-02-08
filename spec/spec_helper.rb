@@ -17,6 +17,9 @@ RSpec.configure do |config|
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   config.mock_with :mocha
+  config.include Devise::TestHelpers, :type => :controller
+  config.include RSpec::Rails::ControllerExampleGroup
+  config.extend ControllerMacros, :type => :controller
   # config.mock_with :flexmock
   # config.mock_with :rr
   # config.mock_with :rspec
