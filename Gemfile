@@ -9,6 +9,7 @@ gem 'mongoid', '2.0.0.beta.20'
 gem 'devise', '1.1.5'
 gem 'cancan', '1.4.1'
 gem 'haml'
+gem 'decent_exposure', '1.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,6 +30,7 @@ gem 'haml'
 # gem 'bj'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
+
 # gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle gems for the local environment. Make sure to
@@ -47,4 +49,7 @@ group :test do
   gem 'factory_girl'
   gem 'mocha'
   gem 'database_cleaner'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara'
 end
