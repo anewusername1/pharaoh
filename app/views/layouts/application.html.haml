@@ -22,7 +22,7 @@
                 = link_to "Add User", new_user_path
                 = link_to "Manage Posts", '/posts/manage'
                 = link_to "Subtexts", subtexts_path
-                / # = "New Posts" if(Post.find(:all, :conditions => {:approved => nil}).count > 0)
+                / # = link_to "New Posts", newposts_path if(Post.find(:all, :conditions => {:approved => nil}).count > 0)
             = link_to "My Account", edit_user_registration_path 
             = link_to "My Posts", "/myposts"
             = link_to "Sign out", destroy_user_session_path
