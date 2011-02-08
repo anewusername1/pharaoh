@@ -4,13 +4,12 @@ Feature: Users ability to comment on posts
   Posts will have the same offensive rating system and the same thumbs up/down rating. That way we can track the best/worst posts and user can sort by that.
 
   Scenario: User should be able to comment on posts
-    Given I have the following "user":
-      | name | role | 
-      | John | user |
-      | Jacob | user |
-      | Jingle | admin |
-    And I debug
-    And I am logged in as "John"
+    Given I have the following user:
+      | name | role | email | 
+      | John | user | john@yourmom.com |
+      | Jacob | user | jacob@yourmom.com |
+      | Jingle | admin | jingle@yourmom.com |
+    And I am signed in
     When I am on the "post" page
     And I follow "Comment on post"
     And I fill in "Comment" with "What a great post!"
