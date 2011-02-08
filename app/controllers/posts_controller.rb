@@ -21,27 +21,39 @@ class PostsController < ApplicationController
     @unapproved_posts = Post.find(:all, :conditions => {:approved => nil})
     @approved_posts = Post.find(:all, :conditions => {:approved => true})
     if(current_user)
-      redirect_to user(current_user) unless(can?(:manage, @posts))
+      redirect_to user_path(current_user) unless(can?(:manage, @posts))
     else
       redirect_to root_path
     end
   end
   
   def manage
-    post = Post.criteria.id(params[:id]).first
-    if(params[:paction] == "approve")
-      flash[:info] = "post approved"
-      post.approved = true
-      post.visible = true
-    elsif(params[:paction] == "deny")
-      flash[:info] = "post denied"
-      post.approved = false
-      post.visible = false
+    if(current_user)
+      post = Post.criteria.id(params[:id]).first
+      if(can?(:manage, post))
+        if(params[:paction] == "approve")
+          flash[:info] = "post approved"
+          post.approved = true
+          post.visible = true
+          post.deny_message = ""
+          post.save
+          redirect_to "/posts/manage"
+        elsif(params[:paction] == "deny")
+          flash[:info] = "post denied"
+          post.approved = false
+          post.visible = false
+          post.deny_message = params[:message]
+          post.save
+          redirect_to "/posts/manage"
+        else
+          redirect_to "/posts/manage"
+        end
+      else
+        redirect_to user_path(current_user) unless()
+      end
     else
-      redirect_to "/posts/manage"
+      redirect_to root_path
     end
-    post.save
-    redirect_to "/posts/manage"
   end
   
   def new
@@ -54,7 +66,7 @@ class PostsController < ApplicationController
     begin
       data[:subtext] = Subtext.criteria.id(params[:post][:subtext]).first.subtext
     rescue NoMethodError => e
-      puts "#{e.class}: #{e.message}"
+      Rails.logger.error(e)
       # most likely, the subtext doesn't exist
       flash[:info] = "Please try again"
       redirect_to new_post_path and return

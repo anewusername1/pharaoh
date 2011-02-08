@@ -6,7 +6,8 @@ class Post
   field :subtext
   field :text
   field :email
-  field :approved
+  field :deny_message
+  field :approved, :type => Boolean, :default => false
   field :visible, :type => Boolean, :default => false
   embeds_many :comments
 end
