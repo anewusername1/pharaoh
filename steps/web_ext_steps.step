@@ -1,0 +1,7 @@
+Given /^the following (.*):$/ do |fabricator, table|
+  
+end
+
+Given /^I am on the (.*)$/ do |the_page|
+  
+end
