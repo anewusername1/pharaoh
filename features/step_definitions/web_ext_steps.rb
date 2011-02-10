@@ -15,9 +15,9 @@ Given /^I am signed in$/ do
   @user ||= Factory.create(:user)
   visit root_path
   click_link_or_button "sign in"
-  fill_in "email", :with => @user.email
-  fill_in "password", :with => 'password'
-  click_button 'sign in'
+  fill_in "user_email", :with => @user.email
+  fill_in "user_password", :with => 'password'
+  click_button 'Sign in'
 end
 
 Given /^I am not authenticated$/ do
