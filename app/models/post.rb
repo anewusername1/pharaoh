@@ -10,4 +10,6 @@ class Post
   field :approved, :type => Boolean, :default => false
   field :visible, :type => Boolean, :default => false
   embeds_many :comments
+
+  scope :activisible, lambda { where(:approved => true, :visible => true).order_by(:created_at.desc) }
 end

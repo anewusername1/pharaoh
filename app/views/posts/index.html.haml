@@ -1,6 +1,6 @@
 = link_to("New Post", new_post_url)
 %table
-  - @posts.each do |post|
+  - active_posts.each do |post|
     %tr
       %td
         = post.subtext

@@ -1,11 +1,19 @@
 class PostsController < ApplicationController
-  def index
-    @posts = Post.find(:all, :conditions => {:approved => true, :visible => true}).order_by(:created_at.desc)
-  end
+  expose(:posts)
+  expose(:post)
   
-  def show
-    @posts = Post.find(:id => params[:id])
+  expose(:active_posts) do
+    Post.activisible
   end
+
+  expose(:subtexts)
+  # def index
+  #   @posts = Post.find(:all, :conditions => {:approved => true, :visible => true}).order_by(:created_at.desc)
+  # end
+  
+  # def show
+  #   @posts = Post.find(:id => params[:id])
+  # end
   
   def destroy
     if(can?(:manage, :posts))
@@ -56,10 +64,10 @@ class PostsController < ApplicationController
     end
   end
   
-  def new
-    @post = Post.new
-    @subtexts = Subtext.all.collect {|s| [s.subtext, s._id]}
-  end
+  # def new
+  #   @post = Post.new
+  #   @subtexts = Subtext.all.collect {|s| [s.subtext, s._id]}
+  # end
   
   def create
     data = params[:post]
