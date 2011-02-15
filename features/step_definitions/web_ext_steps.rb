@@ -4,7 +4,7 @@ Given /^I debug/ do
   true
 end
 
-Given /^I have the following ([^"]*)s*:$/ do |object, table|
+Given /^I have the following (.*)s:$/ do |object, table|
   table.hashes.each do |object_data|
     puts "#{object} - #{object_data.inspect}"
     Factory.create(object, object_data)
