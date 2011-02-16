@@ -26,8 +26,8 @@ class PostsController < ApplicationController
   end
   
   def unapproved
-    @unapproved_posts = Post.find(:all, :conditions => {:approved => nil})
-    @approved_posts = Post.find(:all, :conditions => {:approved => true})
+    @unapproved_posts = Post.unapproved
+    @approved_posts = Post.approved
     if(current_user)
       redirect_to user_path(current_user) unless(can?(:manage, @posts))
     else

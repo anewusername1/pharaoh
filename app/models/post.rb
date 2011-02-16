@@ -12,4 +12,6 @@ class Post
   embeds_many :comments
 
   scope :activisible, lambda { where(:approved => true, :visible => true).order_by(:created_at.desc) }
+  scope :unapproved, where(:approved => nil)
+  scope :approved, where(:approved => true)
 end
