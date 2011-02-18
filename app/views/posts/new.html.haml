@@ -1,11 +1,11 @@
 = javascript_include_tag '/javascripts/controllers/posts.new.js'
-= error_messages_for @post
+= error_messages_for post
 #new_post_container
-  - form_for('post', @post, :method => "POST", :url => posts_url) do |f| 
+  - form_for('post', post, :method => "POST", :url => posts_url) do |f| 
     .label
       = f.label 'subtext'
     .field
-      = f.select('subtext', @subtexts)
+      = f.select('subtext', post_subtexts)
     .label
       = f.label 'text'
     .field

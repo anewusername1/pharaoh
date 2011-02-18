@@ -6,7 +6,9 @@ class PostsController < ApplicationController
     Post.activisible
   end
 
-  expose(:subtexts)
+  expose(:post_subtexts) do
+    Subtext.all.collect {|s| [s.subtext, s._id]}
+  end
   # def index
   #   @posts = Post.find(:all, :conditions => {:approved => true, :visible => true}).order_by(:created_at.desc)
   # end
