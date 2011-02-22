@@ -10,6 +10,7 @@ Feature: Admin ability to manage posts
       | I hate it when | that happens | false | false | 2011-01-23 |
       | I love it when | that happens | false | false | 2011-02-23 |
       | I want to | eat a cheeseburger | false | false | 2010-03-20 |
-    And I am on the admin page
+    And I am signed in as admin
+    And I am on the posts page
+    When I follow "Manage Posts"
     Then I should see "I hate it when that happens"
-
