@@ -11,11 +11,20 @@ Given /^I have the following (\w+[^s])s?:$/ do |object, table|
 end
 
 Given /^I am signed in$/ do
-  @user ||= Factory.create(:user)
+  @current_user ||= Factory.create(:user)
   visit root_path
   click_link_or_button "sign in"
-  fill_in "user_email", :with => @user.email
-  fill_in "user_password", :with => 'password'
+  fill_in "user_email", with: @current_user.email
+  fill_in "user_password", with: 'password'
+  click_button 'Sign in'
+end
+
+Given /^I am signed in as admin$/ do
+  @current_user ||= Factory.create(:user, role: 'admin')
+  visit root_path
+  click_link_or_button "sign in"
+  fill_in "user_email", with: @current_user.email
+  fill_in "user_password", with: 'password'
   click_button 'Sign in'
 end
 
